@@ -1,0 +1,15 @@
+name: build-docs
+run-name: ${{github.action}} starts building the docs
+on: [push]
+jobs:
+  start-build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm i pnpm -g
+      - run: pnpm i
+      - run: pnpm run build
+      - run: ls -a
