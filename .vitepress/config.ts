@@ -1,23 +1,11 @@
+import { withMermaid } from "vitepress-plugin-mermaid";
 import { defineConfig } from "vitepress";
-import { withPwa } from "@vite-pwa/vitepress";
 import {
-  contributing,
-  discord,
-  font,
-  github,
-  mastodon,
-  ogImage,
-  ogUrl,
-  releases,
-  twitter,
   vitestDescription,
-  vitestName,
+  vitestName
 } from "./meta";
-import { pwa } from "./scripts/pwa";
-import { transformHead } from "./scripts/transformHead";
-import { teamMembers } from "./contributors";
 
-export default withPwa(
+export default withMermaid(
   defineConfig({
     lang: "en-US",
     title: vitestName,
@@ -28,59 +16,6 @@ export default withPwa(
         lang: "en-US",
       },
     },
-    head: [
-      ["meta", { name: "theme-color", content: "#729b1a" }],
-      ["link", { rel: "icon", href: "/favicon.ico", sizes: "any" }],
-      ["link", { rel: "icon", href: "/logo.svg", type: "image/svg+xml" }],
-      [
-        "meta",
-        {
-          name: "author",
-          content: `${teamMembers
-            .map((c) => c.name)
-            .join(", ")} and ${vitestName} contributors`,
-        },
-      ],
-      [
-        "meta",
-        {
-          name: "keywords",
-          content:
-            "vitest, vite, test, coverage, snapshot, react, vue, preact, svelte, solid, lit, ruby, cypress, puppeteer, jsdom, happy-dom, test-runner, jest, typescript, esm, tinypool, tinyspy, node",
-        },
-      ],
-      ["meta", { property: "og:title", content: vitestName }],
-      ["meta", { property: "og:description", content: vitestDescription }],
-      ["meta", { property: "og:url", content: ogUrl }],
-      ["meta", { property: "og:image", content: ogImage }],
-      ["meta", { name: "twitter:title", content: vitestName }],
-      ["meta", { name: "twitter:description", content: vitestDescription }],
-      ["meta", { name: "twitter:image", content: ogImage }],
-      ["meta", { name: "twitter:card", content: "summary_large_image" }],
-      [
-        "link",
-        {
-          rel: "preload",
-          as: "style",
-          onload: "this.onload=null;this.rel='stylesheet'",
-          href: font,
-        },
-      ],
-      [
-        "noscript",
-        {},
-        `<link rel="stylesheet" crossorigin="anonymous" href="${font}" />`,
-      ],
-      ["link", { rel: "mask-icon", href: "/logo.svg", color: "#ffffff" }],
-      [
-        "link",
-        {
-          rel: "apple-touch-icon",
-          href: "/apple-touch-icon.png",
-          sizes: "180x180",
-        },
-      ],
-    ],
     lastUpdated: true,
     markdown: {
       theme: {
@@ -106,7 +41,6 @@ export default withPwa(
         { text: "插件开发", link: "/extension/", activeMatch: "^/extension/" },
       ],
       sidebar: {
-        // TODO: bring sidebar of apis and config back
         "/extension": [
           {
             text: "插件开发",
@@ -126,6 +60,10 @@ export default withPwa(
           {
             text: "前端工程化",
             items: [
+              {
+                text: '命令行工具',
+                link: "/engineering/cli",
+              },
               {
                 text: "工程模版服务",
                 link: "/engineering/boilerplate",
@@ -288,7 +226,5 @@ export default withPwa(
         ],
       },
     },
-    pwa,
-    transformHead,
   })
-);
+)
