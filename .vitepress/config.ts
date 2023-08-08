@@ -4,6 +4,7 @@ import {
   vitestDescription,
   vitestName
 } from "./meta";
+import { engineering, extension } from './sidebar/index.js'
 
 export default withMermaid(
   defineConfig({
@@ -41,60 +42,8 @@ export default withMermaid(
         { text: "插件开发", link: "/extension/", activeMatch: "^/extension/" },
       ],
       sidebar: {
-        "/extension": [
-          {
-            text: "插件开发",
-            items: [
-              {
-                text: "Chrome 插件",
-                link: "/extension/chrome",
-              },
-              {
-                text: "VsCode 插件",
-                link: "/extension/vscode",
-              },
-            ],
-          },
-        ],
-        "/engineering": [
-          {
-            text: "前端工程化",
-            items: [
-              {
-                text: '命令行工具',
-                link: "/engineering/cli",
-              },
-              {
-                text: "工程模版服务",
-                link: "/engineering/boilerplate",
-              },
-              {
-                text: "工程构建服务",
-                link: "/engineering/builder",
-              },
-              {
-                text: "CICD 服务",
-                link: "/engineering/cicd",
-              },
-              {
-                text: "日志收集服务",
-                link: "/engineering/log",
-              },
-              {
-                text: "运行监控服务",
-                link: "/engineering/monitor",
-              },
-              {
-                text: "质量守护服务",
-                link: "/engineering/quality",
-              },
-              {
-                text: "文档构建服务",
-                link: "/engineering/docs",
-              },
-            ],
-          },
-        ],
+        "/extension": extension,
+        "/engineering": engineering,
         "/": [
           {
             text: "Guide",
